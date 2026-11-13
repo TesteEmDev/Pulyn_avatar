@@ -1,6 +1,6 @@
 {
   "name": "@pulyn/avatar",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Gerador dos avatares do Pulyn: desenha o personagem em SVG a partir do código curto (pulyn1-...). Usado pelo site e pelo backend.",
   "private": true,
   "type": "module",

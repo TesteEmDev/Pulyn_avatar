@@ -9,4 +9,4 @@ export { renderAvatarSvg } from './render';
  * em vez de ficar presa no cache. Mudar só a ordem/lista de peças NÃO é uma mudança de visual: isso mexe no
  * código salvo e tem regras próprias (ver parts.ts).
  */
-export const AVATAR_STYLE_VERSION = 2;
+export const AVATAR_STYLE_VERSION = 3;

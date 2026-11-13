@@ -2,8 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import {
-  ACCESSORIES, CLOTHES, DEFAULT_AVATAR_CONFIG, EYES, FACES, HAIR_STYLES, MOUTHS, avatarImageUrl, encodeAvatar, randomAvatarConfig,
-  renderAvatarSvg,
+  ACCESSORIES, CLOTHES, DEFAULT_AVATAR_CONFIG, EARRINGS, EYES, FACES, GLASSES, HAIR_STYLES, MOUTHS, NECKLACES, avatarImageUrl, encodeAvatar,
+  randomAvatarConfig, renderAvatarSvg,
 } from '../dist/index.js';
 
 const SHAPES = ['square', 'circle', 'pop'];
@@ -31,7 +31,10 @@ test('6000 personagens sorteados em todos os formatos saem sem defeito', () => {
 });
 
 test('toda peça de toda lista desenha, em cima do personagem padrão', () => {
-  const listas = { face: FACES, hairStyle: HAIR_STYLES, eyes: EYES, mouth: MOUTHS, cloth: CLOTHES, acc: ACCESSORIES };
+  const listas = {
+    face: FACES, hairStyle: HAIR_STYLES, eyes: EYES, mouth: MOUTHS, cloth: CLOTHES, acc: ACCESSORIES,
+    glassesStyle: GLASSES, neck: NECKLACES, earringStyle: EARRINGS,
+  };
   for (const [campo, lista] of Object.entries(listas)) {
     for (const { value } of lista) {
       for (const shape of SHAPES) {
@@ -39,6 +42,13 @@ test('toda peça de toda lista desenha, em cima do personagem padrão', () => {
         assert.deepEqual(problemas(svg), [], `${campo}=${value} ${shape}`);
       }
     }
+  }
+});
+
+test('pinta, curativo e fundo personalizado desenham sem defeito', () => {
+  for (const shape of SHAPES) {
+    const svg = renderAvatarSvg({ ...DEFAULT_AVATAR_CONFIG, mole: true, bandaid: true, bg: '#12ab9c', shape });
+    assert.deepEqual(problemas(svg), [], shape);
   }
 });
 
